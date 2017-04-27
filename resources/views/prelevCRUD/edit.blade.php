@@ -1,17 +1,15 @@
-@extends('layouts.default')
- 
-@section('content')
 
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Edit New Item</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('prelevCRUD.index') }}"> Back</a>
-            </div>
-        </div>
-    </div>
+
+<div class="modal fade" id="prelevementedit"  role="dialog">
+  <div class="modal-dialog" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">modifier prelevement</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
     @if (count($errors) > 0)
         <div class="alert alert-danger">
@@ -29,7 +27,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>date_prelevement:</strong>
+                <strong>date prelevement:</strong>
                 {!! Form::text('date_pv', null, array('placeholder' => 'date_pv','class' => 'form-control')) !!}
             </div>
         </div>
@@ -70,4 +68,6 @@
     </div>
     {!! Form::close() !!}
 
-@endsection
+   </div>
+  </div>
+</div>

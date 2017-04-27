@@ -11,7 +11,7 @@ class analyse extends Model
      public $fillable = [
       
           'nature_analyse',
-          'nom_analyse',
+          'nom_analyse'
                
     ];
 

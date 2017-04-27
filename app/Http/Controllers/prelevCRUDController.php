@@ -2,16 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
 use App\prelevement;
+use App\exportateur;
 use Barryvdh\DomPDF\Facade as PDF;
 class prelevCRUDController extends Controller
 {
     //
     public function index(Request $request)
     {
-       $prelevements = prelevement::orderBy('id',/*'num_pv',*/'date_pv','nombre_article','observation','num_bordereau_envoi')->paginate(5);
-        return view('prelevCRUD.index',compact('prelevements'))->with('i', ($request->input('page', 1) - 1) * 5); 
+
+      $search = Request::get('search');
+      $prelevements = prelevement::where('nombre_article','like','%'.$search.'%')->orderBy('id')->paginate(5);
+      return view('prelevCRUD.index',compact('prelevements'));
+
+
+
+    //    $prelevements = prelevement::orderBy('id','date_pv','nombre_article','observation','num_bordereau_envoi'  ,'exportateur_id'
+       
+    //    )->paginate(5);
+    //     return view('prelevCRUD.index',compact('prelevements'))->with('i', ($request->input('page', 1) - 1) * 5); 
+    // 
     }
 
     /**
@@ -35,7 +46,7 @@ class prelevCRUDController extends Controller
     {
         //
         $this->validate($request, [
-            /*'num_pv' => 'required',*/
+           
             'date_pv' => 'required',
             'nombre_article' => 'required',
             'observation' => 'required',
@@ -45,8 +56,9 @@ class prelevCRUDController extends Controller
 
        $prelevement =  prelevement::create($request->all());
        $prelevement->articles()->sync($request->get('articles'));
-     
-        return redirect()->route('prelevCRUD.index')
+        
+         $exportateur = exportateur::pluck('nom_exportateur' , 'id');
+        return redirect()->route('prelevCRUD.index' , $exportateur )
                         ->with('success','prelev created successfully');
     }
 
@@ -84,6 +96,20 @@ class prelevCRUDController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+
+     public function editItem(Request $req) {
+      $prelevements = prelevement::find ($req->id);
+      $prelevements->date_pv = $req->date_pv;
+      $prelevements->nombre_article = $req->nombre_article;
+      $prelevements->observation = $req->observation;
+     $prelevements->num_bordereau_envoi = $req->num_bordereau_envoi;
+
+      $prelevements->save();
+      return response()->json($prelevements);
+    }
+
     public function update(Request $request, $id)
     {
         $this->validate($request, [

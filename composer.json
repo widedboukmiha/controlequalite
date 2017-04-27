@@ -21,6 +21,9 @@
         "classmap": [
             "database"
         ],
+        "files": [
+            "app/ActiveMenu/activemenu.php"
+        ],
         "psr-4": {
             "App\\": "app/"
         }

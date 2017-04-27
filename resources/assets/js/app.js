@@ -15,6 +15,19 @@ require('./bootstrap');
 
 //Vue.component('example', require('./components/Example.vue'));
 
+new Vue({
+  // ...
+  computed: {
+    href () {
+      return '#prelevCRUD/create'
+    }
+  }
+})
+
+
+
+
+
 const app = new Vue({
     el: '#app',
     router

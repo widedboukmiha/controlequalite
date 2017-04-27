@@ -1,6 +1,4 @@
-@extends('layouts.default')
- 
-@section('content')
+
 
      <div class="row">
         
@@ -75,6 +73,7 @@
         <td>{{ $ar->quantite_globale }}</td>      
         <td>{{ $ar->destination }}</td>
         <td>
+        
            @foreach($ar->prelevements as $prelevement)
                       {{ $prelevement->nombre_article }}
                     @endforeach
@@ -115,4 +114,3 @@
 
     {!! $article->render() !!}
 
-@endsection

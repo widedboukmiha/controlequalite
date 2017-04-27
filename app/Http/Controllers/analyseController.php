@@ -66,9 +66,11 @@ class analyseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+   public function edit($id)
     {
         //
+          $analyse = analyse::find($id);
+        return view('analyse.edit',compact('analyse'));
     }
 
     /**
@@ -81,6 +83,15 @@ class analyseController extends Controller
     public function update(Request $request, $id)
     {
         //
+         $this->validate($request, [
+            'nature_analyse' => 'required',
+             'nom_analyse' => 'required' 
+                
+        ]);
+
+        analyse::find($id)->update($request->all());
+        return redirect()->route('analyse.index')
+                        ->with('success','analyse updated successfully');
     }
 
     /**

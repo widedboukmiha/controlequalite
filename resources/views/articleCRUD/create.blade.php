@@ -153,7 +153,7 @@
         <div class="col-xs-4">
             <div class="form-group">
                 <strong>bon refoulement :</strong>
-                        {!! Form::select('bonrefoulements[]',App\bonrefoulement::pluck('motif_refoulement' , 'id' ) , null , array('class' => 'form-control', 'placeholder' => 'Entrez les prelevementss ' , 'multiple' => true )) !!}					
+                        {!! Form::select('bonrefoulements[]',App\bonrefoulement::pluck('motif_refoulement' , 'id' ) , null , array('class' => 'form-control', 'placeholder' => 'null ' ,'empty_data' => null, 'multiple' => true )) !!}					
 			</div>
         </div>
 

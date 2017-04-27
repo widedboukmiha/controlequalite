@@ -1,17 +1,15 @@
-@extends('layouts.default')
 
-@section('content')
 
-    <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Create New Item</h2>
-            </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('prelevCRUD.index') }}"> Back</a>
-            </div>
-        </div>
-    </div>
+<div class="modal fade" id="prelevement"  role="dialog">
+  <div class="modal-dialog" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ajouter prelevement</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
     @if (count($errors) > 0)
         <div class="alert alert-danger">
@@ -57,7 +55,7 @@
 
 
                  
-          <div class="col-xs-4">
+        <div class="col-xs-4">
             <div class="form-group">
                 <strong>nom article :</strong>
                         {!! Form::select('articles[]',App\article::pluck('nom_article' , 'id' ) , null , array('class' => 'form-control', 'placeholder' => 'Entrez les articles ' , 'multiple' => true )) !!}
@@ -65,11 +63,31 @@
 				    </div>
           </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
 
+            <div class="col-xs-4">
+            <div class="form-group">
+                <strong> exportateur :</strong>
+                        {!! Form::select('exportateur_id' ,App\exportateur::pluck('nom_exportateur' , 'id' ) , null , array('class' => 'form-control', 'placeholder' => 'Entrez exportateur ' , 'multiple' => true )) !!}
+					
+				    </div>
+          </div>
+
+           </div>
+ 
+
+
+      
+      </div>
+      <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+
+      </div>
+         {!! Form::close() !!}
     </div>
-    {!! Form::close() !!}
+  </div>
 
-@endsection
+
+</div>
+
+
+

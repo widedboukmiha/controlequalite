@@ -1,6 +1,4 @@
-@extends('layouts.app')
 
-@section('content')
 
 <!DOCTYPE html>
 <title>welcome</title>
@@ -18,37 +16,36 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script>
 
 
-
+@include('menuactive')
 
 
 <div class="container-fluid">
 		
-<!-- Carousel container -->
+
 <div id="my-pics" class="carousel slide carousel-fade" data-ride="carousel"  style="width:1300px">
 
-<!-- Indicators -->
       <ol class="carousel-indicators">
           <li data-target="#my-pics" data-slide-to="0" class="active"></li>
           <li data-target="#my-pics" data-slide-to="1"></li>
           <li data-target="#my-pics" data-slide-to="2"></li>
       </ol>
 
-<!-- Content -->
+
       <div class="carousel-inner" role="listbox" >
 
-                 <!-- Slide 1 -->
+               
                 <div class="carousel-item active">
                     <img src="oct1.jpg" style="width:1300px"  >
                 </div>
 
-                <!-- Slide 2 -->
+                
                 <div class="carousel-item">
                     <img src="oct1.jpg" style="width:1300px" >
                     <div class="carousel-caption">
                     </div>
                 </div>
 
-                  <!-- Slide 3 -->
+             
                 <div class="carousel-item">
                     <img src="oct1.jpg" style="width:1300px"  >
                     <div class="carousel-caption">
@@ -57,7 +54,7 @@
 
         </div>
 
-          <!-- Previous/Next controls -->
+      
           <a class="left carousel-control" href="#my-pics" role="button" data-slide="prev">
                 <span class="icon-prev" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -80,5 +77,5 @@
 
 
 </div>
-@endsection
+
 

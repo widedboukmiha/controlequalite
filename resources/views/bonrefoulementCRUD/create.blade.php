@@ -46,6 +46,13 @@
 					
 			</div>
         </div>
+ <div class="col-xs-4">
+            <div class="form-group">
+                <strong> exportateur :</strong>
+                        {!! Form::select('exportateur_id' ,App\exportateur::pluck('nom_exportateur' , 'id' ) , null , array('class' => 'form-control', 'placeholder' => 'Entrez exportateur ' , 'multiple' => true )) !!}
+					
+				    </div>
+          </div>
 
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>

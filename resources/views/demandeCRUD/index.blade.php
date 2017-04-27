@@ -1,16 +1,21 @@
 @extends('layouts.default')
  
 @section('content')
-
+ 
    <div class="row">
         
-           <p></p>
+           <p>
+
+          
+           </p>
     </div>
 
     <div class="row">
         
            <p></p>
     </div>
+
+ 
 
     <div class="row">
         
@@ -39,8 +44,8 @@
     </div> 
 
 
- <div class="row">
-        
+ <div class="col-md-6 col-md-offset-3" >
+            
            <p></p>
     </div>
 
@@ -49,7 +54,7 @@
             <p>{{ $message }}</p>
         </div>
     @endif
-
+  
     <table class="table table-bordered">
         <tr>
             <th>No</th>

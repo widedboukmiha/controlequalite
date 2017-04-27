@@ -1,23 +1,8 @@
-@extends('layouts.default')
- 
-@section('content')
 
-    <div class="row">
-        
-           <p></p>
-    </div>
+  @include('homestat')
+      <div class="container"> 
 
-    <div class="row">
-        
-           <p></p>
-    </div>
-
-    <div class="row">
-        
-           <p></p>
-    </div>
-
-    <div class="row">
+<div class="row">
         
             <div class ="col-md-6 col-md-offset-3">
                 <h2 class="text-center">gestion des bon refoulements</h2>
@@ -32,14 +17,15 @@
       
              <button type="submit" class="btn btn-default">Submit</button>
 
-        <div class="pull-right"> 
+        <div class="pull-right">
+
               <a class="btn btn-success" href="{{ route('bonrefoulementCRUD.create') }}"> ajouter bon refoulement</a> 
         </div>
 
     </div> 
 
 
- <div class="row">
+    <div class="row">
         
            <p></p>
     </div>
@@ -84,4 +70,4 @@
 
     {!! $bonrefoulement->render() !!}
 
-@endsection
+</div>

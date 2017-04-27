@@ -11,7 +11,8 @@ class bonrefoulement extends Model
      public $fillable = [
          /*'code_refoulement',*/
      'date_refoulement',
-     'motif_refoulement'
+     'motif_refoulement',
+     'exportateur_id'
      ];
 
 

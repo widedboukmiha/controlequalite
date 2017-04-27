@@ -1,29 +1,9 @@
-@extends('layouts.default')
- 
-@section('content')
-
-
-  <div class="row">
-        
-           <p></p>
-    </div>
-
-    <div class="row">
-        
-           <p></p>
-    </div>
-
-    <div class="row">
-        
-           <p></p>
-    </div>
-
-    <div class="row">
-        
+  @include('homestat')
+       <div class="container"> 
             <div class ="col-md-6 col-md-offset-3">
                 <h2 class="text-center">gestion des certificats</h2>
             </div>
-    </div>
+   
 
    <div class="row">
 
@@ -98,4 +78,4 @@
 
     {!! $certificat->render() !!}
 
-@endsection
+</div>
