@@ -17,8 +17,8 @@ class bonrefoulementController extends Controller
     public function index(Request $request)
     {
      //
-         $bonrefoulement = bonrefoulement::orderBy('id',/*'code_refoulement',*/'date_refoulement', 'motif_refoulement')->paginate(5);
-        return view('bonrefoulementCRUD.index',compact('bonrefoulement'))
+         $bonrefoulement = bonrefoulement::orderBy('id','date_refoulement', 'motif_refoulement')->paginate(5);
+        return view('vendor.adminlte.bonrefoulement.index',compact('bonrefoulement'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -30,7 +30,7 @@ class bonrefoulementController extends Controller
     public function create()
     {
         //
-        return view('bonrefoulementCRUD.create');
+        return view('bonrefoulement.create');
     }
 
     /**
@@ -52,8 +52,8 @@ class bonrefoulementController extends Controller
 
 
         $bonrefoulement = bonrefoulement::create($request->all());
-        $bonrefoulement->articles()->sync($request->get('articles'));
-        return redirect()->route('bonrefoulementCRUD.index' )
+      
+        return redirect()->route('bonrefoulement.index' , $bonrefoulement )
                         ->with('success','bon refoulement created successfully');
 
           
@@ -69,7 +69,7 @@ class bonrefoulementController extends Controller
     {
         //
          $bonrefoulement = bonrefoulement::find($id);
-        return view('bonrefoulementCRUD.show',compact('bonrefoulement'));
+        return view('bonrefoulement.show',compact('bonrefoulement'));
     }
 
     /**
@@ -82,7 +82,7 @@ class bonrefoulementController extends Controller
     {
         //
           $bonrefoulement = bonrefoulement::find($id);
-        return view('bonrefoulementCRUD.edit',compact('bonrefoulement'));
+        return view('vendor.adminlte.bonrefoulement.edit',compact('bonrefoulement'));
     }
 
     /**
@@ -102,8 +102,8 @@ class bonrefoulementController extends Controller
            
         ]);
 
-        bonrefoulement::find($id)->update($request->all());
-        return redirect()->route('bonrefoulementCRUD.index')
+       // bonrefoulement::find($id)->update($request->all());
+        return redirect()->route('bonrefoulement.index')
                         ->with('success','bonrefoulement updated successfully');
     }
 
@@ -117,7 +117,7 @@ class bonrefoulementController extends Controller
     {
         //
          bonrefoulement::find($id)->delete();
-        return redirect()->route('bonrefoulementCRUD.index')
+        return redirect()->route('bonrefoulement.index')
                         ->with('success','bonrefoulement deleted successfully');
     }
 }

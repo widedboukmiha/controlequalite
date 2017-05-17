@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class article extends Model
 {
     //
+
       public $fillable = 
 
 
@@ -24,57 +25,31 @@ class article extends Model
            , 'resultat_analyse'
            , 'poids_brut'
            , 'poids_net'
+           , 'certificat_id'
+           , 'bonrefoulement_id'
      
 
   ];
 
 
-    public function prelevements()
-    {
-        return $this->belongsToMany('App\prelevement');
-       
-    }
-
-   public function chargements()
-    {
-        return $this->belongsToMany('App\chargement');
-       
-    }
-
-
-    public function analyses()
-    {
-        return $this->belongsToMany('App\analyse');
-       
-    }
-
-
-    public function bonrefoulements()
-    {
-        return $this->belongsToMany('App\bonrefoulement');
-       
-    }
-
-
-
-
-  /*  public function SetPrelevementsListAttribute($value){
-
-       return $this->prelevements()->sync($value);
-
-
-    }
-
-       public function getPrelevementsListAttribute(){
-           
-           if ($this->id){
-                   return $this->prelevements->pluck('id') ;
-           }
-         
-
-        
-    }
-    */
-
+     public function certificats(){
  
+           return $this->belongsTo('App\certificat');    
+      }
+
+    public function bonrefoulements(){
+ 
+           return $this->belongsTo('App\bonrefoulement');    
+      }
+ 
+     public function analyse()
+    {
+        return $this->belongsTo('App\analyse');
+    }
+
+    public function demandes()
+    {
+        return $this->belongsToMany('App\demande');
+       
+    }
 }

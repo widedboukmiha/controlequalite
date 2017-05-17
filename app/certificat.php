@@ -8,7 +8,6 @@ class certificat extends Model
 {
     //
     public $fillable = [
-         /* 'code_certificat' ,*/
           'nom_emballage',
           'nom_transitaire',
           'pays_dorigine',
@@ -17,12 +16,25 @@ class certificat extends Model
           'lieu',
           'date_certificat',
           'bureau_douane',
-          'validite'
+          'validite',
+           'exportateur_id' ,
+           'controlleur_id'
     ];
-
 
      public function exportateurs(){
  
            return $this->belongsTo('App\exportateur');    
       }
+
+      
+     public function controlleurs(){
+ 
+           return $this->belongsTo('App\controlleur');    
+      }  
+
+      public function articles() {
+
+                return $this->hasMany('App\article');
+      }    
+
 }

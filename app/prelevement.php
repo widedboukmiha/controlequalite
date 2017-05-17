@@ -6,23 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class prelevement extends Model
 {
-    //
-      public $fillable = ['date_pv','nombre_article','observation','num_bordereau_envoi', 'exportateur_id' 
-      ];
-
-
-         public function articles()
-                {
-                    return $this->belongsToMany('App\article');
-                    
-                }
-
-
-                //plusieurs
-
-        public function exportateurs(){
-
-             return $this->belongsTo('App\exportateur');
-               
-         }
+     public $fillable = ['date_pv','nombre_article','nombre_echantillon' ,'observation','num_bordereau_envoi' ];
 }

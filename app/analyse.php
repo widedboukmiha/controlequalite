@@ -8,26 +8,19 @@ class analyse extends Model
 {
     //
 
-     public $fillable = [
-      
+     public $fillable = [      
           'nature_analyse',
-          'nom_analyse'
-               
+          'nom_analyse'               
     ];
 
-
+    public function article()
+    {
+        return $this->hasOne('App\article');
+    }
     
-    public function laboratoires()
-    {
-        return $this->belongsToMany('App\laboratoire');
+    // public function laboratoires()
+    // {
+    //     return $this->belongsToMany('App\laboratoire');
        
-    }
-
-
-
-    public function articles()
-    {
-        return $this->belongsToMany('App\article');
-       
-    }
+    // }
 }

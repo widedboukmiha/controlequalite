@@ -18,7 +18,6 @@ class certificatController extends Controller
      //
          $certificat = certificat::orderBy(
                'id' 
-          /* , 'code_certificat' */
            , 'type_produit'
            , 'nom_certificat'
            , 'marque_fabrication' 
@@ -32,7 +31,7 @@ class certificatController extends Controller
            , 'poids_brut'
            , 'poids_net'
              )->paginate(5);
-        return view('certificatCRUD.index',compact('certificat'))
+        return view('vendor.adminlte.certificat.index',compact('certificat'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -44,7 +43,7 @@ class certificatController extends Controller
     public function create()
     {
         //
-        return view('certificatCRUD.create');
+        return view('certificat.create');
     }
 
     /**
@@ -73,8 +72,9 @@ class certificatController extends Controller
             
         ]);
 
-        certificat::create($request->all());
-        return redirect()->route('certificatCRUD.index')
+        $certificat = certificat::create($request->all());
+      
+        return redirect()->route('certificat.index')
                         ->with('success','certificat created successfully');
     }
 
@@ -88,7 +88,7 @@ class certificatController extends Controller
     {
         //
          $certificat = certificat::find($id);
-        return view('certificatCRUD.show',compact('certificat'));
+        return view('certificat.show',compact('certificat'));
     }
 
     /**
@@ -101,7 +101,7 @@ class certificatController extends Controller
     {
         //
           $certificat = certificat::find($id);
-        return view('certificatCRUD.edit',compact('certificat'));
+        return view('certificat.edit',compact('certificat'));
     }
 
     /**
@@ -131,7 +131,7 @@ class certificatController extends Controller
         ]);
 
         certificat::find($id)->update($request->all());
-        return redirect()->route('certificatCRUD.index')
+        return redirect()->route('certificat.index')
                         ->with('success','certificat updated successfully');
     }
 
@@ -145,7 +145,7 @@ class certificatController extends Controller
     {
         //
          certificat::find($id)->delete();
-        return redirect()->route('certificatCRUD.index')
+        return redirect()->route('certificat.index')
                         ->with('success','certificat deleted successfully');
     }
 }

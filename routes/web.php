@@ -15,71 +15,49 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('home');
+Route::group(['middleware' => 'auth'], function () {
+    //    Route::get('/link1', function ()    {
+//        // Uses Auth Middleware
+//    });
+
+    //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
+    #adminlte_routes
+
+
+
+    // gestion bon refoulement
+Route::get('/bonrefoulement' , 'bonrefoulementController@index');
+Route::resource('bonrefoulement' , 'bonrefoulementController');
+
+// gestion bon analyse
+Route::get('/analyse' , 'analyseController@index');
+Route::resource('analyse' , 'analyseController');
+
+// gestion article
+Route::get('/article' , 'articleController@index');
+Route::resource('article' , 'articleController');
+
+// gestion certificat
+Route::get('/certificat' , 'certificatController@index');
+Route::resource('certificat' , 'certificatController');
+
+// gestion demande
+Route::get('/demande' , 'demandeController@index');
+Route::resource('demande' , 'demandeController');
+
+// gestion controlleur
+Route::get('/controlleur' , 'controlleurController@index');
+Route::resource('controlleur' , 'controlleurController');
+
+// gestion exportateur
+Route::get('/exportateur' , 'exportateurController@index');
+Route::resource('exportateur' , 'exportateurController');
+
+// gestion laboratoire
+Route::get('/laboratoire' , 'laboratoireController@index');
+Route::resource('laboratoire' , 'laboratoireController');
 });
 
-Route::get('/homestat', function () {
-    return view('homestat');
-});
-
-Route::get('/homelab', function () {
-    return view('homelaboratoire');
-});
-
-Route::get('/navbar', function () {
-    return view('navbar.nav');
-});
-
-Route::get('menuactive', function () {
-    return view('menuactive');
-});
-
-
-Route::get ('sendmail' , 'SendMailController@sendMail');
-Route::resource('send' , 'SendMailController@index');
-
-//Route::get('homelab','analyseController@index');
-
-Route::get('demandeCRUD','demandeController@index');
-Route::get('demandeCRUD/{index}','demandeController@index');
-Route::resource('articleCRUD','articleController');
-Route::get('articleCRUD/{index}','articleController@index');
-Route::resource('bonrefoulementCRUD','bonrefoulementController');
-Route::resource('certificatCRUD','certificatController');
-Route::get('certificatCRUD/{index}','certificatController@index');
-
-Route::resource('prelevCRUD','prelevCRUDController');
-Route::get('prelevCRUD/{index}','prelevCRUDController@index');
-Route::get('prelevCRUD/{edit}','prelevCRUDController@edit');
-Route::get('prelevCRUD/{update}','prelevCRUDController@update');
-
-Route::group(['middleware' => ['web']], function() {
-  Route::resource('prelevCRUD','prelevCRUDController');
-  Route::post ( '/editItem', 'prelevCRUDController@editItem' );
-  Route::post ( '/addItem', 'BlogController@addItem' );
-  Route::post ( '/destroy', 'prelevCRUDController@destroy' );
-});
-
-Route::resource('chargement','chargementController');
-Route::resource('analyse','analyseController');
-//Route::resource('navbar','navController');
-
-Route::resource('laboratoire','laboratoireController');
-Route::resource('controlleur','controlleurController');
-
-Route::resource('getPDF','PDFController');
-Route::resource('/menu' , 'menuController');
-
-//Route::get('manage-vue', 'VueItemController@manageVue');
-//Route::resource('vueitems','VueItemController');
-
-
-Route::get('manage-vue', 'VueControlleurController@manageVue');
-Route::resource('vuecontrolleurs','VueControlleurController');
 
 
 
-Auth::routes();
-
-//Route::get('/home', 'HomeController@index');

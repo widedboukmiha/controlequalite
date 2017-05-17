@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'oracle'),
+    'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -36,6 +36,12 @@ return [
         'sqlite' => [
             'driver' => 'sqlite',
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
+            'prefix' => '',
+        ],
+
+        'sqlite_testing' => [
+            'driver' => 'sqlite',
+            'database' => env('DB_DATABASE_TESTING', database_path('testing.database.sqlite')),
             'prefix' => '',
         ],
 
@@ -66,20 +72,6 @@ return [
             'schema' => 'public',
             'sslmode' => 'prefer',
         ],
-
-        'oracle' => [
-       
-            'driver' => 'oracle',    
-            'host' => env('DB_HOST', '192.168.159.128'),     
-            'port' => env('DB_PORT', '1521'),       
-            'database'=> env('DB_DATABASE', 'XE'),      
-            'username'=> env('DB_USERNAME', 'system'),       
-            'password'=> env('DB_PASSWORD', 'syste;'),      
-            'charset'=> env('DB_CHARSET', 'AL32UTF8'),      
-            'prefix'=> env('DB_PREFIX', ''),       
-            'prefix_schema' => env('DB_SCHEMA_PREFIX', ''),
-   
- ],
 
     ],
 

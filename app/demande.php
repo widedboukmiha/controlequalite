@@ -6,13 +6,43 @@ use Illuminate\Database\Eloquent\Model;
 
 class demande extends Model
 {
-    //
-    public $table ='demande';
-    public $fillable = [/*'num_demande',*/'nature_demande','date_demande'];
 
-    public function exportateurs()
-    {
-        return $this->belongsTo('App\exportateur');
+    
+
+
+       public $fillable = [
+           'nature_demande',
+           'date_demande',
+           'date_exportation',
+           'quantite_exportation' ,
+            'date_pv',
+           'nombre_article',
+           'nombre_echantillon' ,
+           'observation',
+           'num_bordereau_envoi',
+           'exportateur_id' ,
+           'controlleur_id'
+
+           ];
+
+
+
+
+
+     public function exportateurs(){
+ 
+           return $this->belongsTo('App\exportateur');    
+      }
+
+     public function controlleurs(){
+ 
+           return $this->belongsTo('App\controlleur');    
+      }
+
+   public function articles()    {
+         
+        return $this->belongsToMany('App\article');
+       
     }
-
+   
 }

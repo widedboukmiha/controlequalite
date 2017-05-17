@@ -16,11 +16,11 @@ class laboratoireController extends Controller
     {
         //
         $laboratoire = laboratoire::orderBy('id','nom_laboratoire' , 'adresse_laboratoire')->paginate(5);
-        return view('laboratoire.index',compact('laboratoire'))
+        return view('vendor.adminlte.laboratoire.index',compact('laboratoire'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
-    /**
+  /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -28,6 +28,7 @@ class laboratoireController extends Controller
     public function create()
     {
         //
+        return view('laboratoire.create');
     }
 
     /**
@@ -39,7 +40,20 @@ class laboratoireController extends Controller
     public function store(Request $request)
     {
         //
-    }
+         $this->validate($request, [
+            'nom_laboratoire'  => 'required' ,
+            'adresse_laboratoire'  => 'required' ,
+           
+        ]);
+
+
+        $laboratoire = laboratoire::create($request->all());
+        $laboratoire->analyses()->sync($request->get('analyses'));
+        return redirect()->route('laboratoire.index' )
+                        ->with('success','laboratoire created successfully');
+
+          
+         }
 
     /**
      * Display the specified resource.
@@ -50,6 +64,8 @@ class laboratoireController extends Controller
     public function show($id)
     {
         //
+         $laboratoire = laboratoire::find($id);
+        return view('laboratoire.show',compact('laboratoire'));
     }
 
     /**
@@ -61,6 +77,8 @@ class laboratoireController extends Controller
     public function edit($id)
     {
         //
+          $laboratoire = laboratoire::find($id);
+        return view('laboratoire.edit',compact('laboratoire'));
     }
 
     /**
@@ -73,6 +91,15 @@ class laboratoireController extends Controller
     public function update(Request $request, $id)
     {
         //
+         $this->validate($request, [
+            'nom_laboratoire'  => 'required' ,
+            'adresse_laboratoire'  => 'required' ,
+           
+        ]);
+
+        laboratoire::find($id)->update($request->all());
+        return redirect()->route('laboratoire.index')
+                        ->with('success','laboratoire updated successfully');
     }
 
     /**
@@ -84,5 +111,8 @@ class laboratoireController extends Controller
     public function destroy($id)
     {
         //
+         laboratoire::find($id)->delete();
+        return redirect()->route('laboratoire.index')
+                        ->with('success','laboratoire deleted successfully');
     }
 }

@@ -14,7 +14,7 @@ class prelevCRUDController extends Controller
 
       $search = Request::get('search');
       $prelevements = prelevement::where('nombre_article','like','%'.$search.'%')->orderBy('id')->paginate(5);
-      return view('prelevCRUD.index',compact('prelevements'));
+      return view('vendor.adminlte.prelevCRUD.index',compact('prelevements'));
 
 
 

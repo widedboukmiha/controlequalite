@@ -41,7 +41,7 @@ class articleController extends Controller
              )->paginate(5);
 
              
-        return view('articleCRUD.index',compact('article'))->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('vendor.adminlte.article.index',compact('article'))->with('i', ($request->input('page', 1) - 1) * 5);
 
 
          }
@@ -88,11 +88,8 @@ class articleController extends Controller
         
 
         $article = article::create($request->all());
-        $article->prelevements()->sync($request->get('prelevements'));
-        $article->chargements()->sync($request->get('chargements'));
-        $article->bonrefoulements()->sync($request->get('bonrefoulements'));
-        $article->analyses()->sync($request->get('analyses'));
-        return redirect()->route('articleCRUD.index' )
+        $article->demandes()->sync($request->get('demandes'));
+        return redirect()->route('article.index' )
                         ->with('success','article created successfully');
 
           
@@ -111,7 +108,7 @@ class articleController extends Controller
         //
          $article = article::find($id);
          
-        return view('articleCRUD.show',compact('article'));
+        return view('article.show',compact('article'));
     }
 
 
@@ -126,7 +123,7 @@ class articleController extends Controller
     {
         //
           $article = article::find($id);
-        return view('articleCRUD.edit',compact('article'));
+        return view('article.edit',compact('article'));
     }
 
     /**
@@ -161,7 +158,7 @@ class articleController extends Controller
         $article->update($request->all());
         $article->prelevements()->sync($request->get('prelevements'));
 
-        return redirect()->route('articleCRUD.index')
+        return redirect()->route('article.index')
                         ->with('success','article updated successfully');
     }
 
@@ -175,7 +172,7 @@ class articleController extends Controller
     {
         //
          article::find($id)->delete();
-        return redirect()->route('articleCRUD.index')
+        return redirect()->route('article.index')
                         ->with('success','article deleted successfully');
     }
 }

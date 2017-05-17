@@ -4,10 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\demande;
+use Illuminate\Support\Facades\Input;
 
 
 class demandeController extends Controller
 {
+
+    public function __construct(Request $request)
+    {
+        /*
+      $date_demande = Input::get('date_demande') ;
+      $date_demande = 'readOnly' ;
+      */
+
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +27,13 @@ class demandeController extends Controller
     public function index(Request $request)
     {
      //
-         $demande = demande::orderBy('id','num' , 'nature' , 'date')->paginate(5);
-        return view('demandeCRUD.index',compact('demande'))
+         $demande = demande::orderBy(
+           'id',  
+           'nature_demande',
+           'date_demande'
+   
+            )->paginate(5);
+       return view('vendor.adminlte.demande.index',compact('demande'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -29,7 +45,7 @@ class demandeController extends Controller
     public function create()
     {
         //
-        return view('demandeCRUD.create');
+        return view('vendor.adminlte.demande.create');
     }
 
     /**
@@ -42,15 +58,18 @@ class demandeController extends Controller
     {
         //
          $this->validate($request, [
-           /* 'num_demande' => 'required',*/
+           /* 'num_demande' => 'required',
             'nature_demande' => 'required',
-            'date_demande' => 'required',
+            'date_demande' => 'required',*/
         ]);
 
-        demande::create($request->all());
-        return redirect()->route('demandeCRUD.index')
+        $demande = demande::create($request->all());
+        $demande->articles()->sync($request->get('articles'));
+
+        return redirect()->route('vendor.adminlte.demande.create' )
                         ->with('success','demande created successfully');
-    }
+
+              }
 
     /**
      * Display the specified resource.
@@ -62,7 +81,7 @@ class demandeController extends Controller
     {
         //
          $demande = demande::find($id);
-        return view('demandeCRUD.show',compact('demande'));
+     //   return view('demandeCRUD.show',compact('demande'));
     }
 
     /**
@@ -75,7 +94,7 @@ class demandeController extends Controller
     {
         //
           $demande = demande::find($id);
-        return view('demandeCRUD.edit',compact('demande'));
+       // return view('demandeCRUD.edit',compact('demande'));
     }
 
     /**
@@ -89,14 +108,14 @@ class demandeController extends Controller
     {
         //
          $this->validate($request, [
-            /*'num_demande' => 'required',*/
+            /*'num_demande' => 'required',
             'nature_demande' => 'required',
-            'date_demande' => 'required',
+            'date_demande' => 'required',*/
         ]);
 
         demande::find($id)->update($request->all());
-        return redirect()->route('demandeCRUD.index')
-                        ->with('success','demande updated successfully');
+       // return redirect()->route('demandeCRUD.index')
+                        //->with('success','demande updated successfully');
     }
 
     /**
@@ -109,7 +128,7 @@ class demandeController extends Controller
     {
         //
          demande::find($id)->delete();
-        return redirect()->route('demandeCRUD.index')
-                        ->with('success','demande deleted successfully');
+      //  return redirect()->route('demandeCRUD.index')
+                       // ->with('success','demande deleted successfully');
     }
 }

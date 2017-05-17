@@ -7,18 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class laboratoire extends Model
 {
     //
-     public $fillable = [
-      
+     public $fillable = [      
           'nom_laboratoire',
-          'adresse_laboratoire',
-       
+          'adresse_laboratoire'       
     ];
 
-
-
-    public function analyses()
-    {
-        return $this->belongsToMany('App\analyse');
+    // public function analyses()
+    // {
+    //     return $this->belongsToMany('App\analyse');
        
-    }
+    // }
+
 }

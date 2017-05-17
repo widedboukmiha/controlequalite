@@ -8,25 +8,17 @@ class exportateur extends Model
 {
     //
 
-        public $fillable = ['nom_exportateur','adresse_exportateur'];
+        public $fillable = [
+            'nom_exportateur',
+            'adresse_exportateur'
+        ];
 
 
-            public function demandes() {
+           public function demandes() {
 
                 return $this->hasMany('App\demande');
              }
-                
-            public function prelevements(){
-
-                return $this->hasMany('App\prelevement'); 
-            }
-
-
-           public function factures(){
-
-                return $this->hasMany('App\facture'); 
-            }
-
+  
 
            public function certificats(){
 
@@ -35,11 +27,8 @@ class exportateur extends Model
 
           public function bonrefoulements(){
 
-                return $this->hasMany('App\bonrefoulemen'); 
+                return $this->hasMany('App\bonrefoulement'); 
             }
-
-
-
 
 
 }

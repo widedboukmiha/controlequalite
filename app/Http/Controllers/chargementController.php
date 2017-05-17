@@ -16,7 +16,7 @@ class chargementController extends Controller
     {
         //
         $chargement = chargement::orderBy('id','date_exportetion' , 'quantite_exportation')->paginate(5);
-        return view('chargement.index',compact('chargement'))
+        return view('vendor.adminlte.chargement.index',compact('chargement'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 

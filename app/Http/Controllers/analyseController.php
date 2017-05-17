@@ -15,7 +15,7 @@ class analyseController extends Controller
     {
         //
           $analyse = analyse::orderBy('id','nature_analyse' , 'nom_analyse')->paginate(5);
-        return view('analyse.index',compact('analyse'))->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('vendor.adminlte.analyse.index',compact('analyse'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -102,6 +102,8 @@ class analyseController extends Controller
      */
     public function destroy($id)
     {
-        //
+              analyse::find($id)->delete();
+        return redirect()->route('analyse.index');
+         
     }
 }
